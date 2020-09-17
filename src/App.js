@@ -1,6 +1,6 @@
 import React from "react";
 
-import AppWithRouter from "./AppRouter";
+import AppWithRouter from "./components/AppRouter";
 
 const App = () => <AppWithRouter />;
 

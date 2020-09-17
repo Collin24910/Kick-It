@@ -17,9 +17,17 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { registerUser } from "../actions/authActions";
 
 const styles = (theme) => ({
+  background: {
+    backgroundColor: "#F6F6F6",
+    overflow: "hidden",
+    position: "relative",
+    height: "100%",
+    minHeight: "100vh",
+    paddingBottom: "10%",
+  },
   layout: {
     width: "auto",
-    display: "block", // Fix IE11 issue.
+    display: "block",
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -47,6 +55,7 @@ const styles = (theme) => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
+    backgroundColor: "#ff4d4d",
   },
   link: {
     textDecoration: "none",
@@ -65,7 +74,7 @@ const styles = (theme) => ({
   },
 });
 
-class SignupPage extends Component {
+class RegisterPage extends Component {
   state = {
     name: "",
     email: "",
@@ -112,97 +121,101 @@ class SignupPage extends Component {
     const { errors, successfulSignup } = this.state;
 
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <main className={classes.layout}>
-          <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockIcon />
-            </Avatar>
-            <Typography variant="headline">Sign Up</Typography>
-            {successfulSignup && (
-              <NavLink to="/login" className={classes.successText}>
-                Successfully signed up! Click here to log in.
-              </NavLink>
-            )}
-            <form onSubmit={this.handleSubmit} noValidate>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="name">Name</InputLabel>
-                <Input
-                  onChange={this.handleInputChange}
-                  id="name"
-                  name="name"
-                  autoComplete="name"
-                  autoFocus
-                  error={!!errors.name}
-                />
-                <span className={classes.errorText}>{errors.name}</span>
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input
-                  onChange={this.handleInputChange}
-                  id="email"
-                  name="email"
-                  autoComplete="email"
-                  error={!!errors.email}
-                />
-                <span className={classes.errorText}>{errors.email}</span>
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  onChange={this.handleInputChange}
-                  name="password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  error={!!errors.password}
-                />
-                <span className={classes.errorText}>{errors.password}</span>
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Confirm Password</InputLabel>
-                <Input
-                  onChange={this.handleInputChange}
-                  name="passwordConfirm"
-                  type="password"
-                  id="passwordConfirm"
-                  autoComplete="current-password-confirm"
-                  error={!!errors.passwordConfirm}
-                />
-                <span className={classes.errorText}>
-                  {errors.passwordConfirm || errors.error}
-                </span>
-              </FormControl>
-              <Button
-                type="submit"
-                fullWidth
-                variant="raised"
-                color="primary"
-                className={classes.submit}
-              >
-                Create Account
-              </Button>
-            </form>
-            <Typography className={classes.footer} variant="body1">
-              {"Already have an account? "}
-              <NavLink to="/login" className={classes.link}>
-                Log In
-              </NavLink>
-            </Typography>
-          </Paper>
-        </main>
-      </React.Fragment>
+      <div className={classes.background}>
+        <React.Fragment>
+          <CssBaseline />
+          <main className={classes.layout}>
+            <Paper className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <LockIcon />
+              </Avatar>
+              <Typography variant="headline">Sign Up</Typography>
+              {successfulSignup && (
+                <NavLink to="/login" className={classes.successText}>
+                  Successfully signed up! Click here to log in.
+                </NavLink>
+              )}
+              <form onSubmit={this.handleSubmit} noValidate>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel color="secondary" htmlFor="name">
+                    Name
+                  </InputLabel>
+                  <Input
+                    onChange={this.handleInputChange}
+                    id="name"
+                    name="name"
+                    autoComplete="name"
+                    autoFocus
+                    error={!!errors.name}
+                  />
+                  <span className={classes.errorText}>{errors.name}</span>
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="email">Email Address</InputLabel>
+                  <Input
+                    onChange={this.handleInputChange}
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    error={!!errors.email}
+                  />
+                  <span className={classes.errorText}>{errors.email}</span>
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input
+                    onChange={this.handleInputChange}
+                    name="password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    error={!!errors.password}
+                  />
+                  <span className={classes.errorText}>{errors.password}</span>
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="password">Confirm Password</InputLabel>
+                  <Input
+                    onChange={this.handleInputChange}
+                    name="passwordConfirm"
+                    type="password"
+                    id="passwordConfirm"
+                    autoComplete="current-password-confirm"
+                    error={!!errors.passwordConfirm}
+                  />
+                  <span className={classes.errorText}>
+                    {errors.passwordConfirm || errors.error}
+                  </span>
+                </FormControl>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="raised"
+                  color="secondary"
+                  className={classes.submit}
+                >
+                  Create Account
+                </Button>
+              </form>
+              <Typography className={classes.footer} variant="body1">
+                {"Already have an account? "}
+                <NavLink to="/login" className={classes.link}>
+                  Log In
+                </NavLink>
+              </Typography>
+            </Paper>
+          </main>
+        </React.Fragment>
+      </div>
     );
   }
 }
 
-SignupPage.defaultProps = {
+RegisterPage.defaultProps = {
   errors: {},
 };
 
-SignupPage.propTypes = {
+RegisterPage.propTypes = {
   classes: PropTypes.object.isRequired,
   createUser: PropTypes.func.isRequired,
   errors: PropTypes.object,
@@ -220,4 +233,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default compose(
   withStyles(styles),
   connect(mapStateToProps, mapDispatchToProps)
-)(SignupPage);
+)(RegisterPage);

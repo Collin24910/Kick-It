@@ -17,9 +17,18 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { loginUser } from "../actions/authActions";
 
 const styles = (theme) => ({
+  background: {
+    backgroundColor: "#F6F6F6",
+    overflow: "hidden",
+    position: "relative",
+    height: "100%",
+    minHeight: "100vh",
+    paddingBottom: "10%",
+  },
+
   layout: {
     width: "auto",
-    display: "block", // Fix IE11 issue.
+    display: "block",
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -47,6 +56,7 @@ const styles = (theme) => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
+    backgroundColor: "#ff4d4d",
   },
   link: {
     textDecoration: "none",
@@ -72,7 +82,6 @@ class LoginPage extends Component {
     this.setState(() => ({ [name]: value }));
   };
 
-  /* eslint-disable react/destructuring-assignment, react/prop-types */
   componentDidMount = () => {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/");
@@ -90,7 +99,6 @@ class LoginPage extends Component {
       });
     }
   };
-  /* eslint-enable react/destructuring-assignment, react/prop-types */
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -108,59 +116,65 @@ class LoginPage extends Component {
     const { errors } = this.state;
 
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <main className={classes.layout}>
-          <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockIcon />
-            </Avatar>
-            <Typography variant="headline">Log In</Typography>
-            <form onSubmit={this.handleSubmit} noValidate>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input
-                  onChange={this.handleInputChange}
-                  id="email"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  error={!!errors.email}
-                />
-                <span className={classes.errorText}>{errors.email}</span>
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  onChange={this.handleInputChange}
-                  name="password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  error={!!errors.password}
-                />
-                <span className={classes.errorText}>{errors.password}</span>
-              </FormControl>
+      <div className={classes.background}>
+        <React.Fragment>
+          <CssBaseline />
+          <main className={classes.layout}>
+            <Paper className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <LockIcon />
+              </Avatar>
+              <Typography variant="headline">Log In</Typography>
+              <form onSubmit={this.handleSubmit} noValidate>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel color="secondary" htmlFor="email">
+                    Email Address
+                  </InputLabel>
+                  <Input
+                    onChange={this.handleInputChange}
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                    error={!!errors.email}
+                  />
+                  <span className={classes.errorText}>{errors.email}</span>
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel color="secondary" htmlFor="password">
+                    Password
+                  </InputLabel>
+                  <Input
+                    onChange={this.handleInputChange}
+                    name="password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    error={!!errors.password}
+                  />
+                  <span className={classes.errorText}>{errors.password}</span>
+                </FormControl>
 
-              <Button
-                type="submit"
-                fullWidth
-                variant="raised"
-                color="primary"
-                className={classes.submit}
-              >
-                Log In
-              </Button>
-            </form>
-            <Typography className={classes.footer} variant="body1">
-              {"Don't have an account? "}
-              <NavLink to="/signup" className={classes.link}>
-                Sign Up
-              </NavLink>
-            </Typography>
-          </Paper>
-        </main>
-      </React.Fragment>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="raised"
+                  color="secondary"
+                  className={classes.submit}
+                >
+                  Log In
+                </Button>
+              </form>
+              <Typography className={classes.footer} variant="body1">
+                {"Don't have an account? "}
+                <NavLink to="/signup" className={classes.link}>
+                  Sign Up
+                </NavLink>
+              </Typography>
+            </Paper>
+          </main>
+        </React.Fragment>
+      </div>
     );
   }
 }

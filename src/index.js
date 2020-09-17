@@ -4,11 +4,11 @@ import jwtDecode from "jwt-decode";
 import { Provider } from "react-redux";
 import registerServiceWorker from "./serviceWorker";
 
-import App from "./components/App";
+import App from "./App";
 import createStore from "./store";
 import setAuthToken from "./setAuthToken";
 import { logoutUser, setCurrentUser } from "./actions/authActions";
-import "./style.css";
+import "./index.css";
 
 const store = createStore();
 

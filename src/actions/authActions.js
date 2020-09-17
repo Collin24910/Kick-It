@@ -5,7 +5,7 @@ import { INDICATE_NO_ERRORS, GET_ERRORS, SET_CURRENT_USER } from "./actionType";
 
 export const registerUser = (user) => (dispatch) => {
   axios
-    .post("/user/signup", user)
+    .post("http://localhost:4000/user/signup", user)
     .then((res) => {
       dispatch({
         type: INDICATE_NO_ERRORS,
@@ -24,7 +24,7 @@ export const registerUser = (user) => (dispatch) => {
 
 export const loginUser = (user) => (dispatch) => {
   axios
-    .post("/user/login", user)
+    .post("http://localhost:4000/user/login", user)
     .then((res) => {
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
@@ -47,7 +47,7 @@ export const setCurrentUser = (decoded) => ({
 
 export const updateCurrentUser = (email, name, userId) => (dispatch) =>
   axios
-    .patch(`/user/${userId}`, { email, name })
+    .patch(`http://localhost:4000/user/${userId}`, { email, name, userId })
     .then((res) => {
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
@@ -62,4 +62,12 @@ export const logoutUser = () => (dispatch) => {
   setAuthToken(false);
   dispatch(setCurrentUser({}));
   window.location.href = "/login";
+};
+
+export const deleteUser = (id) => (dispatch) => {
+  localStorage.removeItem("jwtToken");
+  axios.delete(`http://localhost:4000/user/${id}`, { id }).then((res) => {
+    dispatch(setCurrentUser({}));
+    window.location.href = "/login";
+  });
 };

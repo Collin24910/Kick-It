@@ -161,18 +161,14 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-/*/ Add a addiction to the list
-router.patch("/addAddic/:String", async (req, res) => {
+// Add a addiction to the list
+router.patch("/addAddic/:id", async (req, res) => {
   const { id } = req.params;
-
-  if (!req.body.idToFollow) {
-    return res.status(404).json({ message: "No ID found" });
-  }
 
   try {
     await User.findByIdAndUpdate(
       id,
-      { $addToSet: { following: req.body.idToFollow } },
+      { $push: { adds: { name: req.body.name, date: new Date().getTime() } } },
       { new: true, upsert: true },
       (err, doc) => {
         if (err) {
@@ -187,17 +183,13 @@ router.patch("/addAddic/:String", async (req, res) => {
 });
 
 // Remove a Addication from the list
-router.patch("/removeAddic/:String", async (req, res) => {
+router.patch("/removeAddic/:id", async (req, res) => {
   const { id } = req.params;
-
-  if (!req.body.idToUnfollow) {
-    return res.status(404).json({ message: "No ID found" });
-  }
 
   try {
     await User.findByIdAndUpdate(
       id,
-      { $pull: { following: req.body.idToUnfollow } },
+      { $pull: { adds: { _id: req.body.removeid } } },
       { new: true, upsert: true },
       (err, doc) => {
         if (err) {
@@ -209,7 +201,26 @@ router.patch("/removeAddic/:String", async (req, res) => {
   } catch (err) {
     return res.status(500).json(err);
   }
-});*/
+});
+
+router.patch("/addPin/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await User.findByIdAndUpdate(
+      id,
+      { $set: { pind: req.body.addicId } },
+      (err, doc) => {
+        if (err) {
+          return res.status(400).json(err);
+        }
+        return res.status(201).json(doc);
+      }
+    );
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // Delete a user
 router.delete("/:id", async (req, res) => {

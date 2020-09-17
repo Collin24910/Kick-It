@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const registrationRoutes = require("./routes/UserRoutes");
+const postAddicRoutes = require("./routes/AddicRoutes");
+const threadRoutes = require("./routes/ThreadRoutes");
 
 const db = require("./keys").mongoURI;
 
@@ -25,5 +27,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/user", registrationRoutes);
+app.use("/post", postAddicRoutes);
+app.use("/thread", threadRoutes);
 
 module.exports = app;
