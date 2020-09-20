@@ -6,9 +6,9 @@ This is a MERN stack web application designed to track a persons habits that the
 [Here is a demo of this project!](http://ec2-100-25-191-107.compute-1.amazonaws.com:3000/login)
 If you do not wish to make an account use:
 <br/>
-Email: tester@email.com
+Email: "tester@email.com"
 <br/>
-Password: password
+Password: "password"
 
 # Objective
 
