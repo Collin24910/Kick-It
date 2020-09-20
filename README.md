@@ -12,7 +12,7 @@ Password: "password"
 
 # Objective
 
-This web app was designed with the perpose of connecting indeviduals who have a desier to quit a habbit or addiction. With the ability to track you progress through real time and shair your experience with others.
+This web app was designed with the perpose of connecting indeviduals who have a desire to quit a habbit or addiction. With the ability to track you progress through real time and share your experience with others.
 
 # Set up runtime envirnment
 
