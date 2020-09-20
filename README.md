@@ -2,6 +2,12 @@
 
 This is a MERN stack web application designed to track a persons habits that they would like to kick. As well as including social media features such as profiles, posting, commenting, and liking. This application takes full advantage of user authentication with JWT tokens.
 
+# Demo
+[Here is a demo of this project!](http://ec2-100-25-191-107.compute-1.amazonaws.com:3000/login)
+If you do not wish to make an account use:
+Email: tester@email.com
+Password: password
+
 # Objective
 
 This web app was designed with the perpose of connecting indeviduals who have a desier to quit a habbit or addiction. With the ability to track you progress through real time and shair your experience with others.
