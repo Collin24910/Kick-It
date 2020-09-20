@@ -1,6 +1,6 @@
 # Kick-it-Social-Media-MERN-Stack
 
-This is a MERN stack web application designed to track a persons habits that they would like to kick. As well as including social media features such as profiles, posting, commenting, and liking. This application takes full advantage of user authentication and with JWT tokens.
+This is a MERN stack web application designed to track a persons habits that they would like to kick. As well as including social media features such as profiles, posting, commenting, and liking. This application takes full advantage of user authentication with JWT tokens.
 
 # Objective
 
